@@ -6,30 +6,51 @@
               <img src="">
             </a>
           </div>
-          <div class="menu header-float-left">
+           <div class="login header-float-right">
+              <div class="in-login" v-if="isLogin">
+
+              </div>
+              <div class="not-login" v-if="!isLogin">
+                <a href="#">登陆</a>
+                <a href="#">注册</a>
+              </div>
+          </div>
+          <div class="search header-float-right">
+              <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+          </div>
+          <div class="menu header-float-right">
               <ul>
-                <li>首页</li>
-                <li>菜单1</li>
-                <li>菜单2</li>
-                <li>菜单3</li>
+                <li><a>首页</a></li>
+                <li><a>菜单1</a></li>
+                <li><a>菜单2</a></li>
+                <li><a>菜单3</a></li>
               </ul>
           </div>
-          <div class="search header-float-left">
-
-          </div>
-          <div class="login header-float-left">
-          </div>
+          
       </div>
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isLogin: false
+    };
+  }
+};
 </script>
 
 <style scoped lang="less">
 .header-float-left {
   float: left;
+  margin-right: 20px;
+}
+
+.header-float-right {
+  float: right;
   margin-right: 20px;
 }
 
@@ -55,18 +76,46 @@ export default {};
 
 .menu {
   height: 50px;
-
+  width: 460px;
+  color: #888;
+  line-height: 50px;
   ul {
     list-style: none;
+    margin: 0;
 
-    li {
+    li a {
+      display: block;
       float: left;
-      width: 50px;
+      width: 80px;
+      text-align: center;
       margin: 0 10px;
-      height: 50px;
-      line-height: 50px;
       cursor: pointer;
     }
+    li a:hover {
+      background-color: #555;
+      color: white;
+    }
   }
+}
+.login {
+  height: 50px;
+  width: 120px;
+  text-align: center;
+  line-height: 50px;
+
+  a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #888;
+    padding: 0 12px;
+  }
+  a:hover {
+    color: #555;
+  }
+}
+.search {
+  height: 50px;
+  width: 220px;
+  line-height: 50px;
 }
 </style>
