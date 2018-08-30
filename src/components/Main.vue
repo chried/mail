@@ -1,18 +1,22 @@
 <template>
-    <div class="main">
-        
-    </div>
+  <div class="main">
+      <Header></Header>
+  </div>
 </template>
 
 <script>
-export default {
+import Header from "@/components/pages/Header";
 
+export default {
+  data() {
+    return {};
+  },
+  components: { Header }
 };
 </script>
 
 <style scoped>
 .main {
-  border: 1px red solid;
   width: 100%;
 }
 </style>
