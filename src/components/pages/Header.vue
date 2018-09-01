@@ -37,7 +37,8 @@
 export default {
   data() {
     return {
-      isLogin: false
+      isLogin: false,
+      input5: ""
     };
   }
 };
@@ -56,6 +57,7 @@ export default {
 
 .header {
   width: 100%;
+  z-index: 1000;
   height: auto;
 }
 
