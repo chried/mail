@@ -74,9 +74,22 @@
             </el-col>
             <el-col :span="8">
                <div class="content-three">
-                    <h3>热门原创</h3>
+                <h3>热门标签</h3>
+                <div class="tags">
+                  <a>帅气真的是好吗</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                  <a>帅气</a>
+                </div>
+                <hr>
+                <h3>热门原创</h3>
                 <el-row>
-                  <el-col :span="24" v-for="(o, index) in 2" :key="o" :style="card_style">
+                  <el-col :span="24" v-for="(o, index) in 4" :key="o" :style="card_style">
                     <el-card :body-style="{ padding: '0px' }" shadow="hover">
                       <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
                       <div style="padding: 8px;">
@@ -97,14 +110,14 @@
          <!--下页菜单导航-->
           <div class="content-left-menu">
             <ul>
-              <li><a @mouseenter="overShow" @mouseleave="outHide" href="#">历史长河</a></li>
-              <li><a href="#">老兵永存</a></li>
-              <li><a href="#">传播正能量</a></li>
+              <li :class="currentComponent=='history'?'active':''"><a @mouseenter="showComponents('history')" href="#">历史长河</a></li>
+              <li :class="currentComponent=='veteran'?'active':''"><a @mouseenter="showComponents('veteran')" href="#">老兵永存</a></li>
+              <li :class="currentComponent=='energy'?'active':''"><a @mouseenter="showComponents('energy')" href="#">传播正能量</a></li>
             </ul>           
           </div>
-        <div class="content" style="height:1200px;display:inline-block;margin-top:20px;margin-bottom:20px;">
+        <div class="content content-footer">
          
-          <slot name="history"></slot>
+          <div :is="currentComponent" keep-alive></div>
 
         </div>
       </div>
@@ -125,18 +138,16 @@ export default {
         "margin-bottom": "20px",
         "padding-right": "15px"
       },
-      currentDate: new Date()
+      currentDate: new Date(),
+      currentComponent: "history"
     };
   },
   methods: {
     handleClick(tab, event) {
       console.log(tab, event);
     },
-    overShow() {
-      console.log("show");
-    },
-    outHide() {
-      console.log("hide");
+    showComponents(name) {
+      this.currentComponent = name;
     }
   },
   components: { Header, energy, history, veteran }
@@ -156,6 +167,10 @@ export default {
   transition: 0.2s;
   margin-top: 50px;
   overflow: hidden;
+}
+.content-footer {
+  margin: 20px 0;
+  min-height: 440px;
 }
 .content:hover {
   box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
@@ -226,6 +241,22 @@ export default {
     width: 100%;
     height: 140px;
   }
+  .tags {
+    width: 100%;
+    color: #404040;
+
+    a {
+      display: inline-block;
+      margin: 2px 5px;
+      line-height: 25px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: #409eff;
+      }
+    }
+  }
 }
 .content-important {
   margin: 0 auto;
@@ -235,7 +266,6 @@ export default {
 .content-left-menu {
   position: sticky;
   display: inline-block;
-  margin-top: 20px;
   width: 120px;
   float: left;
   left: 0;
